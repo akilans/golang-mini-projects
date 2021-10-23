@@ -1,10 +1,12 @@
 # Golang Mini Projects for Beginners
 
-Here is the collections for beginner friendly golang projects
+Here is the collection of beginner friendly golang projects
 
 ### Mini Projects
 
 - Book Store cli app to list, add, update, delete books using golang inbuilt modules
+
+- Organize folder based on file extensions
 
 ## Credits and references
 

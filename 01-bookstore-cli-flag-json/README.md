@@ -2,6 +2,10 @@
 
 It is golang command line application to list, add, update and delete books using flag, json, ioutils package
 
+## Demo
+
+![Alt Organize Folder](https://raw.githubusercontent.com/akilans/golang-mini-projects/main/demos/golang-bookstore-cli.gif)
+
 ## Usage
 
 ```bash

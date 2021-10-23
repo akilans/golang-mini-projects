@@ -72,7 +72,7 @@ func handleGetBooks(getCmd *flag.FlagSet, all *bool, id *string) {
 		// to check a book exist or not
 		var foundBook bool
 		for _, book := range books {
-
+			foundBook = true
 			if *id == book.Id {
 				fmt.Printf("%v \t %v \t %v \t %v \t %v \n", book.Id, book.Title, book.Author, book.Price, book.Imageurl)
 			}
