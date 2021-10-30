@@ -10,6 +10,8 @@ Here is the collection of beginner friendly golang projects
 
 - Organize folder based on file extensions
 
+- Website Monitoring and Alerting using Golang
+
 ## Credits and references
 
 1. [That DevOps Guy](https://www.youtube.com/c/MarcelDempers)
