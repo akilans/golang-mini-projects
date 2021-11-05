@@ -3,30 +3,7 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 )
-
-// struct based on books.json file. Please refer
-type Book struct {
-	Id       string `json:"id"`
-	Title    string `json:"title"`
-	Author   string `json:"author"`
-	Price    string `json:"price"`
-	Imageurl string `json:"image_url"`
-}
-
-func jsonMessageByte(msg string) []byte {
-	errrMessage := Message{msg}
-	byteContent, _ := json.Marshal(errrMessage)
-	return byteContent
-}
-
-func checkError(err error) {
-	if err != nil {
-		log.Printf("Error - %v", err)
-	}
-
-}
 
 // Get books - returns books and error
 func getBooks() ([]Book, error) {
@@ -42,7 +19,7 @@ func getBooks() ([]Book, error) {
 	return books, nil
 }
 
-// Get books - returns book and error
+// Get books - returns book, book index and error
 func getBookById(id string) (Book, int, error) {
 	books, err := getBooks()
 	var requestedBook Book
