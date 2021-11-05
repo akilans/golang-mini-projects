@@ -6,11 +6,13 @@ Here is the collection of beginner friendly golang projects
 
 ### Mini Projects
 
-- Book Store cli app to list, add, update, delete books using golang inbuilt modules
+- [Book Store cli app to list, add, update, delete books](https://github.com/akilans/golang-mini-projects/tree/main/01-bookstore-cli-flag-json)
 
-- Organize folder based on file extensions
+- [Organize folder based on file extensions](https://github.com/akilans/golang-mini-projects/tree/main/02-organize-folder)
 
-- Website Monitoring and Alerting using Golang
+- [Website Monitoring and Alerting using Golang](https://github.com/akilans/golang-mini-projects/tree/main/03-web-monitor)
+
+- [Bookstore rest API to list, add, update, delete books](https://github.com/akilans/golang-mini-projects/tree/main/04-bookstore-api)
 
 ## Credits and references
 
