@@ -14,6 +14,8 @@ Here is the collection of beginner friendly golang projects
 
 - [Bookstore rest API to list, add, update, delete books](https://github.com/akilans/golang-mini-projects/tree/main/04-bookstore-api)
 
+- [Random password generator](https://github.com/akilans/golang-mini-projects/tree/main/05-random-password)
+
 ## Credits and references
 
 1. [That DevOps Guy](https://www.youtube.com/c/MarcelDempers)
@@ -22,3 +24,11 @@ Here is the collection of beginner friendly golang projects
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## Tools used
+
+- [Video - Openshot](https://www.openshot.org/)
+- [Gif - FFMPEG](https://www.ffmpeg.org/)
+- [Ubuntu OS](https://ubuntu.com/)
+- [VS code IDE](https://code.visualstudio.com/)
+- [Simple screen recorder](https://www.maartenbaert.be/simplescreenrecorder/)
