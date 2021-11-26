@@ -16,6 +16,8 @@ Here is the collection of beginner friendly golang projects
 
 - [Random password generator](https://github.com/akilans/golang-mini-projects/tree/main/05-random-password)
 
+- [System Metrics API](https://github.com/akilans/golang-mini-projects/tree/main/06-system-monitor)
+
 ## Credits and references
 
 1. [That DevOps Guy](https://www.youtube.com/c/MarcelDempers)
