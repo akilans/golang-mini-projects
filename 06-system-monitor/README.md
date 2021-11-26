@@ -36,9 +36,10 @@ go build
 
 # Access localhost:8080 in browser
 
-![Alt System Metrics](https://raw.githubusercontent.com/akilans/golang-mini-projects/main/images/golang-system-metrics.png?raw=true)
 
 ```
+
+![Alt System Metrics](https://raw.githubusercontent.com/akilans/golang-mini-projects/main/images/golang-system-metrics.png?raw=true)
 
 ## Contributing
 
