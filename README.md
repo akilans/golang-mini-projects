@@ -18,6 +18,8 @@ Here is the collection of beginner friendly golang projects
 
 - [System Metrics API](https://github.com/akilans/golang-mini-projects/tree/main/06-system-monitor)
 
+- [SSH and SFTP](https://github.com/akilans/golang-mini-projects/tree/main/07-ssh-sftp-agent)
+
 ## Credits and references
 
 1. [That DevOps Guy](https://www.youtube.com/c/MarcelDempers)

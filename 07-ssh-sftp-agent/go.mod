@@ -1,4 +1,4 @@
-module go-ssh
+module go-ssh-sftp
 
 go 1.17
 
