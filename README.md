@@ -20,6 +20,8 @@ Here is the collection of beginner friendly golang projects
 
 - [SSH and SFTP](https://github.com/akilans/golang-mini-projects/tree/main/07-ssh-sftp-agent)
 
+- [Folders, Files & Zip](https://github.com/akilans/golang-mini-projects/tree/main/08-file-folder-zip)
+
 ## Credits and references
 
 1. [That DevOps Guy](https://www.youtube.com/c/MarcelDempers)

@@ -12,6 +12,7 @@ import (
 const (
 	MAIN_FOLDER_NAME         = "parent"
 	SUB_FOLDER_NAME          = "child"
+	EMPTY_FOLDER_NAME        = "empty-folder"
 	FILE_UNDER_MAIN_FOLDER   = "parent.txt"
 	FILE_UNDER_SUB_FOLDER    = "child.txt"
 	MAIN_FOLDER_FILE_CONTENT = "Hello this is from main folder file"
@@ -76,6 +77,9 @@ func main() {
 	// create a sub folder
 	createFolder(filepath.Join(MAIN_FOLDER_NAME, SUB_FOLDER_NAME))
 
+	// create a empty sub folder
+	createFolder(filepath.Join(MAIN_FOLDER_NAME, EMPTY_FOLDER_NAME))
+
 	// create a file under main folder
 	createFile(filepath.Join(MAIN_FOLDER_NAME, FILE_UNDER_MAIN_FOLDER), MAIN_FOLDER_FILE_CONTENT)
 
@@ -84,7 +88,9 @@ func main() {
 
 	// get filepaths in all folders
 	err := filepath.Walk(MAIN_FOLDER_NAME, func(path string, info os.FileInfo, err error) error {
+		//fmt.Println(path)
 		if info.IsDir() {
+			targetFilePaths = append(targetFilePaths, path+"/")
 			return nil
 		}
 		targetFilePaths = append(targetFilePaths, path)
@@ -102,15 +108,24 @@ func main() {
 
 	for _, targetFilePath := range targetFilePaths {
 
-		file, err := os.Open(targetFilePath)
-		checkForError(err)
-		defer file.Close()
+		//fmt.Println(targetFilePath)
 
-		w, err := zipWriter.Create(targetFilePath)
+		fileInfo, err := os.Stat(targetFilePath)
 		checkForError(err)
 
-		_, err = io.Copy(w, file)
-		checkForError(err)
+		if fileInfo.IsDir() {
+			_, err := zipWriter.Create(targetFilePath)
+			checkForError(err)
+		} else {
+			file, err := os.Open(targetFilePath)
+			checkForError(err)
+			defer file.Close()
+
+			w, err := zipWriter.Create(targetFilePath)
+			checkForError(err)
+			_, err = io.Copy(w, file)
+			checkForError(err)
+		}
 
 	}
 

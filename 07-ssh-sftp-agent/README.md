@@ -30,7 +30,7 @@ This program will do the following tasks
 git clone https://github.com/akilans/golang-mini-projects.git
 
 # go to the 07-ssh-agent dir
-cd 07-ssh-aftp-agent
+cd 07-ssh-sftp-agent
 
 # build
 go build
