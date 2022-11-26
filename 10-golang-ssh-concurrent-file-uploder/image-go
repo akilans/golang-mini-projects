@@ -1,0 +1,127 @@
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+	"path/filepath"
+	"sync"
+	"time"
+)
+
+type Image struct {
+	Name     string
+	URL      string
+	Category string
+}
+
+var totalDownloadSizebyNormal float64 = 0.0
+var totalDurationbyNormal float64
+
+var totalDownloadSizebyGoRoutine float64 = 0.0
+var totalDurationbyGoRoutine float64
+
+var wg sync.WaitGroup
+
+var images = []Image{
+	{"nature1.jpeg", "https://images.pexels.com/photos/7753054/pexels-photo-7753054.jpeg", "nature"},
+	{"nature2.jpeg", "https://images.pexels.com/photos/572688/pexels-photo-572688.jpeg", "nature"},
+	{"nature3.jpeg", "https://images.pexels.com/photos/1671324/pexels-photo-1671324.jpeg", "nature"},
+	{"nature4.jpeg", "https://images.pexels.com/photos/6004828/pexels-photo-6004828.jpeg", "nature"},
+	{"nature5.jpeg", "https://images.pexels.com/photos/7753054/pexels-photo-7753054.jpeg", "nature"},
+}
+
+func (img Image) DownloadSaveImage(usingGoroutine bool) {
+	var folderName string
+
+	// check whether it is called by normal method or go routine
+	// Create folder name based on normal method or go routine
+	if usingGoroutine {
+		folderName = "go-routine/" + img.Category
+		defer wg.Done()
+	} else {
+		folderName = "normal/" + img.Category
+	}
+
+	res, err := http.Get(img.URL)
+
+	// Check for server error
+	if err != nil {
+		fmt.Printf("Server Error - Failed to save %v from %v \n", img.Name, img.URL)
+		return
+	}
+
+	defer res.Body.Close()
+
+	// check for status code error
+	if res.StatusCode != 200 {
+		fmt.Printf("Status Code Error - Failed to save %v from %v. Server returns code %v \n", img.Name, img.URL, res.StatusCode)
+		return
+	}
+
+	// Check if the category folder exists if not create one
+	_, err = os.Stat(folderName)
+	if os.IsNotExist(err) {
+		err = os.MkdirAll(folderName, 0755)
+		if err != nil {
+			fmt.Printf("Failed to create folder for %v category \n", folderName)
+			return
+		}
+	}
+
+	// Create a file with image name
+	imageFile, err := os.Create(filepath.Join(folderName, img.Name))
+	if err != nil {
+		fmt.Printf("Failed to file for %v \n", img.Name)
+		return
+	}
+	defer imageFile.Close()
+
+	// Save the image to the created folder
+	numberOfBytes, err := io.Copy(imageFile, res.Body)
+	if err != nil {
+		fmt.Printf("Failed to copy file from img.URL to %v \n", img.Name)
+		return
+	}
+
+	if usingGoroutine {
+		totalDownloadSizebyGoRoutine += float64(numberOfBytes) / 1000000.00
+	} else {
+		totalDownloadSizebyNormal += float64(numberOfBytes) / 1000000.00
+	}
+
+	fmt.Printf("Total download size of image %v is %.2fMB \n", img.Name, (float64(numberOfBytes) / 1000000.00))
+
+}
+
+func download() {
+
+	// using normal way
+	startTime := time.Now()
+	fmt.Println("##### Start - Normal Way #####")
+	for _, image := range images {
+		image.DownloadSaveImage(false)
+	}
+	endTime := time.Now()
+	totalDurationbyNormal = endTime.Sub(startTime).Seconds()
+
+	fmt.Printf("Downloaded %.2fMB of data in %.2f seconds\n", totalDownloadSizebyNormal, totalDurationbyNormal)
+	fmt.Println("##### End - Normal Way #####")
+
+	// Using concurrency way
+	wg.Add(len(images))
+	startTime = time.Now()
+	fmt.Println("##### Start - Go Routine Way #####")
+	for _, image := range images {
+		go image.DownloadSaveImage(true)
+	}
+	wg.Wait()
+
+	endTime = time.Now()
+	totalDurationbyGoRoutine = endTime.Sub(startTime).Seconds()
+
+	fmt.Printf("Downloaded %.2fMB of data in %.2f seconds\n", totalDownloadSizebyGoRoutine, totalDurationbyGoRoutine)
+	fmt.Println("##### End - Go Routine Way #####")
+
+}

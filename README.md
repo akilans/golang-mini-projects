@@ -22,6 +22,10 @@ Here is the collection of beginner friendly golang projects
 
 - [Folders, Files & Zip](https://github.com/akilans/golang-mini-projects/tree/main/08-file-folder-zip)
 
+- [Package and Module demo](https://github.com/akilans/golang-mini-projects/tree/main/09-pack-mod-demo)
+
+- [Concurrent File Uploader](https://github.com/akilans/golang-mini-projects/tree/main/10-golang-ssh-concurrent-file-uploder)
+
 ## Credits and references
 
 1. [That DevOps Guy](https://www.youtube.com/c/MarcelDempers)
