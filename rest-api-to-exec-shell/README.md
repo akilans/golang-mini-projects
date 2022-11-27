@@ -1,4 +1,4 @@
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fakilans%2Fgolang-mini-projects%2Ftree%2Fmain%2F05-random-password-flag&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fakilans%2Fgolang-mini-projects%2Ftree%2Fmain%2Frest-api-to-exec-shell&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 # REST API to Execute Shell Commands
 
@@ -7,7 +7,7 @@
 
 ## Demo
 
-![Alt Execute Shell Command](https://raw.githubusercontent.com/akilans/golang-mini-projects/main/demos/rest-api-to-exec-cmd.gif)
+![Alt Execute Shell Command](https://raw.githubusercontent.com/akilans/golang-mini-projects/main/demos/rest-api-to-exec-shell.gif)
 
 ## Usage
 
