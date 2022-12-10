@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "f7f035c6-faaa-4cf2-967a-a218cd042335",
+		"name": "Golang-JWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get open page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Secure page",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJBa2lsYW4iLCJMb2dnZWRJblRpbWUiOiIxMC0xMi0yMDIyIDE2OjA0OjAzIiwiaXNzIjoiQWtpbGFuIiwiZXhwIjoxNjcwNjY4NTAzfQ.KoWrTBoKutRI8JeK6aPVQQ7AOuWs2eXIZUvMcgb5bIo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/secure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"secure"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get JWT token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
