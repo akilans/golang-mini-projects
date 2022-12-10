@@ -26,10 +26,16 @@ Here is the collection of beginner friendly golang projects
 
 - [Concurrent File Uploader](https://github.com/akilans/golang-mini-projects/tree/main/10-golang-ssh-concurrent-file-uploder)
 
+- [Golang REST API with JWT auth](https://github.com/akilans/golang-mini-projects/tree/main/11-jwt-golang)
+
 ## Credits and references
 
 1. [That DevOps Guy](https://www.youtube.com/c/MarcelDempers)
 2. [Donald Feury](https://www.youtube.com/c/DonaldFeury)
+3. [Coding with Robby](https://www.youtube.com/@codingwithrobby)
+4. [Akhil Sharma](https://www.youtube.com/@AkhilSharmaTech)
+5. [NerdCademy](https://www.youtube.com/@NerdCademyDev)
+6. [Golang Dojo](https://www.youtube.com/@GolangDojo)
 
 ## Contributing
 
