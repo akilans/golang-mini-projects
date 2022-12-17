@@ -2,8 +2,7 @@
 
 # JWT authentication with Golang
 
-- This application uses JWT based authorization methos to protect REST api endpoint
-- Endpoint URLS and their sample responses
+- This application uses JWT based authorization method to protect REST api endpoint
 
 ### Run - URLs and sample responses
 

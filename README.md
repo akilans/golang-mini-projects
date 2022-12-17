@@ -28,6 +28,8 @@ Here is the collection of beginner friendly golang projects
 
 - [Golang REST API with JWT auth](https://github.com/akilans/golang-mini-projects/tree/main/11-jwt-golang)
 
+- [Bookstore rest API with Fiber, Gorm, MySQL, JWT](https://github.com/akilans/golang-mini-projects/tree/main/12-fiber-book-rest)
+
 ## Credits and references
 
 1. [That DevOps Guy](https://www.youtube.com/c/MarcelDempers)
