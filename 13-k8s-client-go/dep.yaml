@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-dep
+  name: test-dep
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: test-dep
+  template:
+    metadata:
+      labels:
+        app: test-dep
+    spec:
+      containers:
+      - image: httpd
+        name: httpd

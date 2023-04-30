@@ -69,6 +69,7 @@ Delve is a debugger for the Go programming language.
 ```bash
 # remove path from terminal display
 export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\$ "
+ffmpeg -i ~/test.mp4 ~/test.gif
 ```
 
 ## Notes

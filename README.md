@@ -30,6 +30,8 @@ Here is the collection of beginner friendly golang projects
 
 - [Bookstore rest API with Fiber, Gorm, MySQL, JWT](https://github.com/akilans/golang-mini-projects/tree/main/12-fiber-book-rest)
 
+- [Kubernetes Client-go example](https://github.com/akilans/golang-mini-projects/tree/main/13-k8s-client-go)
+
 ## Credits and references
 
 1. [That DevOps Guy](https://www.youtube.com/c/MarcelDempers)
