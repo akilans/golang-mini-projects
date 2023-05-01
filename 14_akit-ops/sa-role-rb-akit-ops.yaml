@@ -1,0 +1,73 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pod-deployment-service-manager
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pod-deployment-service-manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - services
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - patch
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - patch
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: pod-deployment-read-rb
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pod-deployment-service-manager-role
+subjects:
+- kind: ServiceAccount
+  name: pod-deployment-service-manager
+  namespace: default
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: akit-ops
+  name: akit-ops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akit-ops
+  template:
+    metadata:
+      labels:
+        app: akit-ops
+    spec:
+      containers:
+      - image: akilan/akit-ops:1
+        name: akit-ops
+        env:
+        - name: REPO_URL
+          value: "https://github.com/akilans/k8s-manifests.git"
+        - name: REPO_PULL_INTERVAL
+          value: "15"
+      serviceAccount: pod-deployment-service-manager
