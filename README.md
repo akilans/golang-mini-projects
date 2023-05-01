@@ -32,6 +32,8 @@ Here is the collection of beginner friendly golang projects
 
 - [Kubernetes Client-go example](https://github.com/akilans/golang-mini-projects/tree/main/13-k8s-client-go)
 
+- [Akit-Ops - simple GitOps solution](https://github.com/akilans/golang-mini-projects/tree/main/14-akit-ops)
+
 ## Credits and references
 
 1. [That DevOps Guy](https://www.youtube.com/c/MarcelDempers)
