@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 )
 
@@ -104,8 +105,15 @@ func handleAddBook(addCmd *flag.FlagSet, id, title, author, price, image_url *st
 
 	// checking for add or update
 	if addNewBook {
-		newBook = Book{*id, *title, *author, *price, *image_url}
-		books = append(books, newBook)
+		for _, book := range books {
+			if book.Id == *id {
+				log.Fatal("Book already exists.")	
+			} else {
+				newBook = Book{*id, *title, *author, *price, *image_url}
+				books = append(books, newBook)
+				break
+			}
+		}
 	} else {
 		for i, book := range books {
 			if book.Id == *id {
@@ -126,7 +134,7 @@ func handleAddBook(addCmd *flag.FlagSet, id, title, author, price, image_url *st
 
 	checkError(err)
 
-	fmt.Println("Book added successfully")
+	fmt.Printf("Book %s successfully", os.Args[1])
 
 }
 
