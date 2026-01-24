@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 )
@@ -113,7 +113,7 @@ func handleAddBook(w http.ResponseWriter, r *http.Request) {
 		w.Write(jsonMessageByte(r.Method + " - Method not allowed"))
 	} else {
 		// read the body
-		newBookByte, err := ioutil.ReadAll(r.Body)
+		newBookByte, err := io.ReadAll(r.Body)
 		// check for valid data from client
 		if err != nil {
 			log.Printf("Client Error %v\n", err)
@@ -148,7 +148,7 @@ func handleUpdateBook(w http.ResponseWriter, r *http.Request) {
 		w.Write(jsonMessageByte(r.Method + " - Method not allowed"))
 	} else {
 		// read the body
-		updateBookByte, err := ioutil.ReadAll(r.Body)
+		updateBookByte, err := io.ReadAll(r.Body)
 		// check for valid data from client
 		if err != nil {
 			log.Printf("Client Error %v\n", err)

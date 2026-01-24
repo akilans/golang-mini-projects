@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
-	"time"
 )
 
 // define all the global variables
@@ -51,9 +50,6 @@ func main() {
 		fmt.Println("Please provide valid password length")
 		os.Exit(1)
 	}
-
-	// it generate random number e
-	rand.Seed(time.Now().UnixNano())
 
 	for i := 0; i < numberOfPasswords; i++ {
 		password := generatePassword(passwordLength, minSpecialChar, minUpperChar, minNumberChar)

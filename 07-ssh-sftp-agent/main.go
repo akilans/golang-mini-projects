@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 
@@ -116,7 +115,7 @@ func sshDemoWithPassword() *ssh.ClientConfig {
 }
 
 func sshDemoWithPrivateKey() *ssh.ClientConfig {
-	keyByte, err := ioutil.ReadFile(sshKeyPath)
+	keyByte, err := os.ReadFile(sshKeyPath)
 	check(err)
 	key, err := ssh.ParsePrivateKey(keyByte)
 	check(err)

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"os"
 )
 
@@ -18,7 +17,7 @@ func checkError(err error) {
 
 // get all the books
 func getBooks() (books []Book) {
-	booksBytes, err := ioutil.ReadFile("./books.json")
+	booksBytes, err := os.ReadFile("./books.json")
 	checkError(err)
 
 	err = json.Unmarshal(booksBytes, &books)
@@ -36,7 +35,7 @@ func saveBooks(books []Book) error {
 
 	checkError(err)
 
-	err = ioutil.WriteFile("./books.json", booksBytes, 0644)
+	err = os.WriteFile("./books.json", booksBytes, 0644)
 
 	return err
 
