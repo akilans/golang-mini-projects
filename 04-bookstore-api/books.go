@@ -2,13 +2,13 @@ package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"os"
 )
 
 // Get books - returns books and error
 func getBooks() ([]Book, error) {
 	books := []Book{}
-	booksByte, err := ioutil.ReadFile("./books.json")
+	booksByte, err := os.ReadFile("./books.json")
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func saveBooks(books []Book) error {
 
 	checkError(err)
 
-	err = ioutil.WriteFile("./books.json", booksBytes, 0644)
+	err = os.WriteFile("./books.json", booksBytes, 0644)
 
 	return err
 

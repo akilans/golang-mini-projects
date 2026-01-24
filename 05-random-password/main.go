@@ -6,7 +6,6 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
-	"time"
 )
 
 // define all the global variables
@@ -43,9 +42,6 @@ func main() {
 		fmt.Println("Please provide correct value for number of passwords")
 		os.Exit(1)
 	}
-
-	// it generate random number e
-	rand.Seed(time.Now().Unix())
 
 	for i := 0; i < numberOfPasswords; i++ {
 		password := generatePassword()
