@@ -60,7 +60,7 @@ func handleGetBooks(getCmd *flag.FlagSet, all *bool, id *string) {
 		fmt.Printf("Id \t Title \t Author \t Price \t ImageURL \n")
 
 		for _, book := range books {
-			fmt.Printf("%v \t %v \t %v \t %v \t %v \n", book.Id, book.Title, book.Author, book.Price, book.Imageurl)
+			fmt.Printf("BOOK FOUND: %v by %v \n", book.Title, book.Author)
 		}
 	}
 
