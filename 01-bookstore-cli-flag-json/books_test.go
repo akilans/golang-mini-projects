@@ -73,6 +73,42 @@ func TestSaveBooks(t *testing.T) {
 	}
 }
 
+func TestGetBooks(t *testing.T) {
+	dir := t.TempDir()
+	orig, _ := os.Getwd()
+	defer os.Chdir(orig)
+	os.Chdir(dir)
+
+	books := []Book{
+		{"1", "How to Win Friends", "Dale Carnegie", "600", "http://example.com/1.png"},
+		{"2", "Think and Grow Rich", "Napoleon Hill", "500", "http://example.com/2.png"},
+	}
+	data, _ := json.Marshal(books)
+	os.WriteFile("books.json", data, 0644)
+
+	got := getBooks()
+	if len(got) != 2 {
+		t.Fatalf("expected 2 books, got %d", len(got))
+	}
+	if got[0].Id != "1" || got[1].Id != "2" {
+		t.Errorf("unexpected order: %+v", got)
+	}
+}
+
+func TestGetBooksEmpty(t *testing.T) {
+	dir := t.TempDir()
+	orig, _ := os.Getwd()
+	defer os.Chdir(orig)
+	os.Chdir(dir)
+
+	os.WriteFile("books.json", []byte("[]"), 0644)
+
+	got := getBooks()
+	if len(got) != 0 {
+		t.Errorf("expected empty slice, got %d books", len(got))
+	}
+}
+
 func TestSaveBooksOverwrite(t *testing.T) {
 	dir := t.TempDir()
 	orig, _ := os.Getwd()
@@ -91,5 +127,31 @@ func TestSaveBooksOverwrite(t *testing.T) {
 
 	if len(got) != 1 || got[0].Id != "2" {
 		t.Errorf("expected only second save to remain, got: %+v", got)
+	}
+}
+
+func TestSaveAndGetRoundTrip(t *testing.T) {
+	dir := t.TempDir()
+	orig, _ := os.Getwd()
+	defer os.Chdir(orig)
+	os.Chdir(dir)
+
+	want := []Book{
+		{"10", "Clean Code", "Robert Martin", "450", "http://example.com/cc.png"},
+		{"11", "The Pragmatic Programmer", "Hunt & Thomas", "500", "http://example.com/pp.png"},
+	}
+
+	if err := saveBooks(want); err != nil {
+		t.Fatalf("saveBooks failed: %v", err)
+	}
+
+	got := getBooks()
+	if len(got) != len(want) {
+		t.Fatalf("expected %d books, got %d", len(want), len(got))
+	}
+	for i := range want {
+		if got[i] != want[i] {
+			t.Errorf("book[%d]: got %+v, want %+v", i, got[i], want[i])
+		}
 	}
 }
