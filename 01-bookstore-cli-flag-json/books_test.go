@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"os"
 	"testing"
 )
 
@@ -40,5 +41,55 @@ func TestImageURLTag(t *testing.T) {
 
 	if b.Imageurl != "http://img.example.com/1.png" {
 		t.Errorf("image_url not mapped correctly, got: %q", b.Imageurl)
+	}
+}
+
+func TestSaveBooks(t *testing.T) {
+	dir := t.TempDir()
+	orig, _ := os.Getwd()
+	defer os.Chdir(orig)
+	os.Chdir(dir)
+
+	books := []Book{
+		{"1", "Atomic Habits", "James Clear", "300", "http://example.com/ah.png"},
+	}
+
+	if err := saveBooks(books); err != nil {
+		t.Fatalf("saveBooks returned error: %v", err)
+	}
+
+	data, err := os.ReadFile("books.json")
+	if err != nil {
+		t.Fatalf("books.json not created: %v", err)
+	}
+
+	var saved []Book
+	if err := json.Unmarshal(data, &saved); err != nil {
+		t.Fatalf("saved file is not valid JSON: %v", err)
+	}
+
+	if len(saved) != 1 || saved[0].Id != "1" {
+		t.Errorf("unexpected saved data: %+v", saved)
+	}
+}
+
+func TestSaveBooksOverwrite(t *testing.T) {
+	dir := t.TempDir()
+	orig, _ := os.Getwd()
+	defer os.Chdir(orig)
+	os.Chdir(dir)
+
+	first := []Book{{"1", "Book One", "Author A", "100", "http://example.com/1.png"}}
+	saveBooks(first)
+
+	second := []Book{{"2", "Book Two", "Author B", "200", "http://example.com/2.png"}}
+	saveBooks(second)
+
+	data, _ := os.ReadFile("books.json")
+	var got []Book
+	json.Unmarshal(data, &got)
+
+	if len(got) != 1 || got[0].Id != "2" {
+		t.Errorf("expected only second save to remain, got: %+v", got)
 	}
 }
